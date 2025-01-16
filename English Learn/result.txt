@@ -1,0 +1,168 @@
+Start word | Translate | Number of Mentions
+я | I | 11
+ты | You | 8
+быть | be | 7
+и | And | 7
+в | V | 6
+у | in | 5
+на | on | 5
+всё | All | 4
+хороший | good | 4
+можно | Can | 4
+взять | take | 4
+как | How | 3
+а | A | 3
+какой | Which | 3
+что | What | 3
+чтобы | to | 3
+мочь | be able | 3
+не | Not | 3
+да, | yes, | 3
+давать | give | 3
+это | This | 3
+привет, | Hello, | 2
+тоже | Same | 2
+хорошо! | Fine! | 2
+может, | Maybe, | 2
+звучать | sound | 2
+для | for | 2
+идея! | idea! | 2
+с | with | 2
+себя | myself | 2
+отлично! | Great! | 2
+так | So | 2
+мы | We | 2
+договорились! | Deal! | 2
+отлично, | Great, | 2
+что-то | something | 2
+давно | for a long time | 2
+новый | new | 2
+который | which | 2
+выйти | go out | 2
+пока! | Bye! | 2
+макс! | Max! | 1
+дела? | works? | 1
+анна! | Anna! | 1
+отлично. | Great. | 1
+как? | How? | 1
+думаю, | Think, | 1
+план | plan | 1
+выходные. | weekend. | 1
+слышал, | heard, | 1
+погода. | weather. | 1
+выбраться | get out | 1
+пикник? | picnic? | 1
+здорово! | Great! | 1
+есть | There is | 1
+идеи, | ideas, | 1
+куда | Where | 1
+поехать? | to go? | 1
+заехать | drop in | 1
+парк | park | 1
+«солнечный». | "solar". | 1
+там | there | 1
+много | very | 1
+место | place | 1
+отдыха. | rest. | 1
+насчёт | about | 1
+того, | that | 1
+еда | food | 1
+напитки? | drinks? | 1
+конечно! | Certainly! | 1
+сэндвич | sandwich | 1
+сок. | juice. | 1
+приготовишь? | Will you prepare it? | 1
+сделать | do | 1
+салат | salad | 1
+свежий | fresh | 1
+фрукты. | fruits. | 1
+забыть | forget | 1
+десерт! | dessert! | 1
+фрукт | fruit | 1
+любишь? | do you love? | 1
+нравиться | like | 1
+клубника | strawberry | 1
+виноград. | grape. | 1
+ты? | You? | 1
+предпочитать | prefer | 1
+яблоко | apple | 1
+груши. | pears. | 1
+они | They | 1
+всегда | Always | 1
+освежают. | refreshing. | 1
+согласна! | Agree! | 1
+когда | When | 1
+собираемся? | are we getting ready? | 1
+поехать | to go | 1
+суббота | Saturday | 1
+утром, | in the morning, | 1
+успеть | be on time | 1
+насладиться | enjoy | 1
+днем. | during the day. | 1
+супер! | super! | 1
+время | time | 1
+удобно? | comfortable? | 1
+быть, | be, | 1
+10 | 10 | 1
+утра? | morning? | 1
+достаточно | enough | 1
+времени. | time. | 1
+где | Where | 1
+встретимся? | shall we meet? | 1
+дома. | Houses. | 1
+смочь | be able to | 1
+загрузить | download | 1
+вещи. | things. | 1
+готовиться | get ready | 1
+заранее, | in advance, | 1
+готово. | done. | 1
+постараться | try hard | 1
+собрать. | collect. | 1
+мяч | ball | 1
+игры? | games? | 1
+поиграть | play | 1
+волейбол | volleyball | 1
+или | or | 1
+подобное. | similar. | 1
+раз | once | 1
+играл. | played. | 1
+весело! | funny! | 1
+уверена, | sure, | 1
+день. | day. | 1
+такой | such | 1
+выездов. | departures. | 1
+согласен. | agree. | 1
+кстати, | By the way, | 1
+смотреть | look | 1
+фильмы, | movies, | 1
+этот | this | 1
+неделе? | week? | 1
+слышала, | I heard, | 1
+боевик. | action movie. | 1
+он | He | 1
+смотрел? | watched? | 1
+понравилось! | I liked it! | 1
+экшн | action | 1
+высокий | high | 1
+уровне, | level, | 1
+рекомендую! | I recommend it! | 1
+после | after | 1
+пикник | picnic | 1
+сходить | go | 1
+кино. | movie. | 1
+отличный | great | 1
+завершение | completion | 1
+дня. | day. | 1
+тогда | Then | 1
+подумать | think about it | 1
+о | o | 1
+фильмах, | movies, | 1
+посмотреть. | look. | 1
+посмотреть | look | 1
+расписание | schedule | 1
+выбрать | choose | 1
+интересное. | interesting. | 1
+увидеться | see each other | 1
+субботу, | Saturday, | 1
+тогда! | Then! | 1
+увидимся! | see you! | 1
