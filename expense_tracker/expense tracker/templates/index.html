@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Локальное приложение для учёта и анализа личных расходов">
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">ЛИЧНЫЕ ФИНАНСЫ</div>
+        <h1>Expense Tracker</h1>
+        <p>Учёт, анализ и контроль личных расходов</p>
+      </div>
+      <div class="top-actions">
+        <button class="ghost-btn" id="todayBtn">Сегодня</button>
+        <button class="primary-btn" id="addExpenseBtn">＋ Добавить расход</button>
+      </div>
+    </header>
+
+    <section class="toolbar card" aria-label="Фильтры">
+      <div class="toolbar-group">
+        <label for="period">Период</label>
+        <input id="period" type="month">
+      </div>
+      <div class="toolbar-group">
+        <label for="categoryFilter">Категория</label>
+        <select id="categoryFilter"><option value="all">Все категории</option>__CATEGORY_OPTIONS__</select>
+      </div>
+      <div class="toolbar-group">
+        <label for="searchText">Поиск</label>
+        <input id="searchText" type="search" placeholder="Категория или описание">
+      </div>
+      <div class="toolbar-group compact">
+        <label>Диапазон суммы, ₽</label>
+        <div class="inline-inputs">
+          <input id="amountMin" type="number" min="0" step="0.01" placeholder="от">
+          <input id="amountMax" type="number" min="0" step="0.01" placeholder="до">
+        </div>
+      </div>
+      <button class="ghost-btn toolbar-reset" id="resetFilters">Сбросить</button>
+    </section>
+
+    <section class="kpi-grid">
+      <article class="kpi card">
+        <span class="kpi-label">Потрачено</span>
+        <strong id="totalValue">0 ₽</strong>
+        <span class="kpi-note" id="countValue">0 операций</span>
+      </article>
+      <article class="kpi card">
+        <span class="kpi-label">Бюджет</span>
+        <strong id="budgetValue">0 ₽</strong>
+        <span class="kpi-note">месячный лимит</span>
+      </article>
+      <article class="kpi card">
+        <span class="kpi-label">Осталось</span>
+        <strong id="remainingValue">0 ₽</strong>
+        <span class="kpi-note" id="budgetStatus">—</span>
+      </article>
+      <article class="kpi card">
+        <span class="kpi-label">Средний расход</span>
+        <strong id="averageValue">0 ₽</strong>
+        <span class="kpi-note">на одну операцию</span>
+      </article>
+      <article class="kpi card comparison-kpi">
+        <span class="kpi-label">Динамика</span>
+        <strong id="comparisonValue" class="comparison-value">Нет базы</strong>
+        <span class="kpi-note" id="comparisonNote">предыдущий месяц без расходов</span>
+      </article>
+    </section>
+
+    <section class="main-grid">
+      <article class="card panel">
+        <div class="panel-head">
+          <div><h2>Бюджет и прогноз</h2><p>Оценка текущего темпа расходов</p></div>
+          <button class="icon-btn" id="settingsBtn" title="Настроить бюджет" aria-label="Настроить бюджет">⚙</button>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-line"><span id="progressLabel">0%</span><span id="progressAmount">0 ₽ из 0 ₽</span></div>
+          <div class="progress-bar"><div id="progressFill"></div></div>
+        </div>
+        <div class="forecast-grid">
+          <div class="stat-box"><span>Среднее в день</span><strong id="avgDayValue">0 ₽</strong></div>
+          <div class="stat-box"><span>Прогноз</span><strong id="forecastValue">0 ₽</strong></div>
+          <div class="stat-box"><span>До конца периода</span><strong id="daysLeftValue">0 дн.</strong></div>
+        </div>
+        <div class="alert" id="forecastAlert">Установите бюджет, чтобы включить контроль и прогноз.</div>
+      </article>
+
+      <article class="card panel">
+        <div class="panel-head"><div><h2>Расходы по категориям</h2><p>Структура всех расходов выбранного месяца</p></div></div>
+        <div id="categoriesChart" class="bars"></div>
+      </article>
+    </section>
+
+    <section class="card panel">
+      <div class="panel-head"><div><h2>Динамика расходов</h2><p>Сумма по всем календарным дням выбранного месяца</p></div></div>
+      <div id="daysChart" class="days-chart" aria-label="График расходов по дням"></div>
+    </section>
+
+    <section class="card panel">
+      <div class="panel-head table-head">
+        <div><h2>Расходы за период</h2><p id="tableMeta">0 записей</p></div>
+        <div class="panel-actions">
+          <button class="ghost-btn" id="currencyBtn">Курсы валют</button>
+          <button class="ghost-btn" id="exportBtn">Экспорт CSV</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Дата</th><th>Категория</th><th>Описание</th><th>Сумма</th><th>В базовой валюте</th><th></th></tr></thead>
+          <tbody id="expensesTable"></tbody>
+        </table>
+        <div class="empty-state" id="emptyState" hidden>
+          <div class="empty-icon">₽</div>
+          <strong>Расходов пока нет</strong>
+          <p>Добавьте первую операцию, чтобы начать вести учёт.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop" hidden>
+    <div class="modal" id="expenseModal">
+      <div class="modal-head"><div><h2 id="expenseModalTitle">Добавить расход</h2><p>Введите данные операции</p></div><button class="icon-btn close-modal" aria-label="Закрыть">×</button></div>
+      <form id="expenseForm">
+        <input id="expenseId" type="hidden">
+        <div class="form-grid">
+          <label>Дата<input id="expenseDate" name="date" type="date" required><small class="field-hint">Будущие даты недоступны.</small></label>
+          <label>Сумма<input id="expenseAmount" name="amount" type="number" min="0.01" step="0.01" required></label>
+          <label>Валюта<select id="expenseCurrency" name="currency" required>__CURRENCY_OPTIONS__</select></label>
+          <label>Категория<select id="expenseCategory" name="category" required>__CATEGORY_OPTIONS__</select></label>
+          <label class="full">Описание<input id="expenseDescription" name="description" maxlength="120" placeholder="Например, продукты в магазине"></label>
+        </div>
+        <div class="form-error" id="formError"></div>
+        <div class="modal-actions"><button type="button" class="ghost-btn close-modal">Отмена</button><button class="primary-btn" type="submit" id="expenseSubmitBtn">Сохранить</button></div>
+      </form>
+    </div>
+
+    <div class="modal" id="settingsModal" hidden>
+      <div class="modal-head"><div><h2>Настройки бюджета</h2><p>Лимит на выбранный месяц</p></div><button class="icon-btn close-modal" aria-label="Закрыть">×</button></div>
+      <form id="settingsForm">
+        <label>Месячный бюджет, ₽<input id="monthlyBudget" type="number" min="0.01" step="0.01" required><small class="field-hint">Лимит применяется к выбранному месяцу.</small></label>
+        <div class="form-error" id="settingsError"></div>
+        <div class="modal-actions"><button type="button" class="ghost-btn danger-outline" id="clearBudgetBtn">Сбросить бюджет</button><span class="actions-spacer"></span><button type="button" class="ghost-btn close-modal">Отмена</button><button class="primary-btn" type="submit">Сохранить</button></div>
+      </form>
+    </div>
+
+    <div class="modal" id="currencyModal" hidden>
+      <div class="modal-head"><div><h2>Курсы валют</h2><p>Данные внешнего сервиса Frankfurter · базовая валюта RUB</p></div><button class="icon-btn close-modal" aria-label="Закрыть">×</button></div>
+      <div class="rate-card"><span>USD → RUB</span><strong id="usdRate">—</strong><small id="usdDate">—</small></div>
+      <div class="rate-card"><span>EUR → RUB</span><strong id="eurRate">—</strong><small id="eurDate">—</small></div>
+      <div class="rate-card"><span>CNY → RUB</span><strong id="cnyRate">—</strong><small id="cnyDate">—</small></div>
+      <p class="modal-note">Курс сохраняется вместе с расходом и не меняется задним числом при обновлении котировок.</p>
+      <div class="modal-actions"><button class="primary-btn close-modal">Закрыть</button></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
